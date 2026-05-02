@@ -12,7 +12,7 @@ Route::get('/login', function () {
 
 Route::post('/login', function (Request $request) {
     if (Auth::attempt($request->only('email', 'password'))) {
-        return redirect('/products');
+        return redirect('/admin/dashboard');
     }
 
     return back()->with('error', 'Login gagal');
@@ -25,6 +25,10 @@ Route::get('/', function () {
 
 // ================= PROTECTED (HARUS LOGIN) =================
 Route::middleware('auth')->group(function () {
+    
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    });
 
     Route::get('/products', [ProductController::class, 'index']);
     Route::post('/products', [ProductController::class, 'store']);
