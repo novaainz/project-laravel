@@ -92,7 +92,7 @@
 <body>
 
     <div class="sidebar">
-        <h2>🍞 Toko Roti</h2>
+        <h2>Toko Roti</h2>
         <a href="/admin/dashboard">Dashboard</a>
         <a href="/products">Kelola Produk</a>
         <a href="/login">Logout</a>

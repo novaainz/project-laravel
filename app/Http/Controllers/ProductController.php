@@ -13,6 +13,11 @@ class ProductController extends Controller
         return view('products.index', compact('products'));
     }
 
+    public function create()
+    {
+        return view('products.create');
+    }
+
     public function store(Request $request)
     {
         Product::create([
@@ -23,12 +28,12 @@ class ProductController extends Controller
             'gambar' => $request->gambar
         ]);
 
-        return redirect()->back();
+        return redirect('/products');
     }
 
-        public function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        $product = Product::find($id);
+        $product = Product::findOrFail($id);
 
         $product->update([
             'nama' => $request->nama,
@@ -38,12 +43,12 @@ class ProductController extends Controller
             'gambar' => $request->gambar
         ]);
 
-        return redirect()->back();
+        return redirect('/products');
     }
 
-        public function destroy($id)
+    public function destroy($id)
     {
         Product::destroy($id);
-        return redirect()->back();
+        return redirect('/products');
     }
 }
