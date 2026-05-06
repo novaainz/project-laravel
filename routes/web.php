@@ -28,7 +28,7 @@ Route::get('/dashboard', function () {
 });
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 // ================= PROTECTED (HARUS LOGIN) =================
