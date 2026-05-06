@@ -1,106 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Admin</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #8B4513, #D2B48C);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
 
-        .login-card {
-            width: 380px;
-            background: white;
-            padding: 35px;
-            border-radius: 18px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.18);
-            text-align: center;
-        }
-
-        .login-card h2 {
-            color: #8B4513;
-            margin-bottom: 8px;
-        }
-
-        .login-card p {
-            color: #777;
-            margin-bottom: 25px;
-        }
-
-        .form-group {
-            text-align: left;
-            margin-bottom: 16px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 6px;
-            color: #444;
-            font-weight: bold;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-sizing: border-box;
-        }
-
-        .btn-login {
-            width: 100%;
-            padding: 13px;
-            border: none;
-            border-radius: 10px;
-            background: #8B4513;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .btn-login:hover {
-            background: #A0522D;
-        }
-
-        .error {
-            background: #ffe5e5;
-            color: #c0392b;
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-    </style>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
 
-    <div class="login-card">
-        <h2> Login Admin</h2>
-        <p>Masuk ke Dashboard Toko Roti</p>
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-800 to-orange-200">
+
+    <div class="w-full max-w-md bg-white rounded-3xl shadow-2xl p-10">
+
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-amber-800">
+                Login Admin
+            </h1>
+
+            <p class="text-gray-500 mt-2">
+                Masuk ke Dashboard Toko Roti
+            </p>
+        </div>
 
         @if(session('error'))
-            <div class="error">{{ session('error') }}</div>
+            <div class="bg-red-100 text-red-700 p-3 rounded-xl mb-5">
+                {{ session('error') }}
+            </div>
         @endif
 
-        <form method="POST" action="/login">
+        <form method="POST" action="/login" class="space-y-5">
             @csrf
 
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" name="email" placeholder="Masukkan email" required>
+            <div>
+                <label class="block mb-2 font-semibold text-gray-700">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Masukkan email"
+                    required
+                    class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-amber-700"
+                >
             </div>
 
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" placeholder="Masukkan password" required>
+            <div>
+                <label class="block mb-2 font-semibold text-gray-700">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Masukkan password"
+                    required
+                    class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-amber-700"
+                >
             </div>
 
-            <button type="submit" class="btn-login">Login</button>
+            <button
+                type="submit"
+                class="w-full bg-amber-800 hover:bg-amber-900 transition duration-300 text-white font-bold py-3 rounded-xl shadow-lg"
+            >
+                Login
+            </button>
         </form>
+
     </div>
 
 </body>
