@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HomeController;
 
 // ================= LOGIN =================
 Route::get('/login', function () {
@@ -19,6 +20,13 @@ Route::post('/login', function (Request $request) {
 });
 
 // ================= HOME =================
+Route::get('/dashboard', [HomeController::class, 'index']);
+
+Route::get('/dashboard', function () {
+    $products = [];
+    return view('home', compact('products'));
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
