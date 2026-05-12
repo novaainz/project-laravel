@@ -2,108 +2,214 @@
 <html>
 <head>
     <title>Daftar Produk</title>
-    <style>
-        body { margin: 0; font-family: Arial, sans-serif; background: #f4f6f9; }
-        .container { width: 92%; margin: 35px auto; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
-        h1, h2 { color: #8B4513; margin-top: 0; }
-        .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-        .form-card { background: #fff8f0; padding: 20px; border-radius: 14px; margin-bottom: 25px; }
-        .form-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
-        input { padding: 10px; border: 1px solid #ddd; border-radius: 8px; width: 100%; box-sizing: border-box; }
-        table { width: 100%; border-collapse: collapse; }
-        th { background: #8B4513; color: white; padding: 13px; text-align: left; }
-        td { padding: 12px; border-bottom: 1px solid #eee; vertical-align: middle; }
-        tr:hover { background: #fff8f0; }
-        .btn { padding: 10px 14px; border-radius: 8px; border: none; color: white; cursor: pointer; text-decoration: none; font-size: 14px; }
-        .btn-add { background: #8B4513; }
-        .btn-update { background: #f0ad4e; }
-        .btn-delete { background: #dc3545; }
-        .btn-back { background: #6c757d; }
-        .actions { display: flex; gap: 8px; }
-        .empty { text-align: center; color: #777; padding: 25px; }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-100 min-h-screen">
 
-<div class="container">
+<div class="w-[92%] mx-auto mt-10 bg-white p-8 rounded-2xl shadow-lg">
 
-    <div class="top">
+    <div class="flex justify-between items-center mb-8">
         <div>
-            <h1>Daftar Produk Toko Roti</h1>
-            <p>Kelola data produk roti dengan mudah.</p>
+            <h1 class="text-3xl font-bold text-amber-900">Daftar Produk Toko Roti</h1>
+            <p class="text-gray-600 mt-2">Kelola data produk roti dengan mudah.</p>
         </div>
-        <a href="/admin/dashboard" class="btn btn-back">Kembali</a>
+
+        <a href="/admin/dashboard"
+           class="bg-gray-600 hover:bg-gray-700 text-white px-5 py-2 rounded-lg transition">
+            Kembali
+        </a>
     </div>
 
     <!-- FORM TAMBAH -->
-    <div class="form-card">
-        <h2>Tambah Produk</h2>
+    <div class="bg-amber-50 p-6 rounded-2xl mb-8 border border-amber-100">
+        <h2 class="text-xl font-bold text-amber-900 mb-4">Tambah Produk</h2>
 
-        <form action="/products" method="POST">
+        <form action="/products" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="form-grid">
-                <input type="text" name="nama" placeholder="Nama produk" required>
-                <input type="number" name="harga" placeholder="Harga" required>
-                <input type="number" name="stok" placeholder="Stok" required>
-                <input type="text" name="deskripsi" placeholder="Deskripsi">
-                <input type="text" name="gambar" placeholder="Gambar">
+
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                <input class="border rounded-lg px-4 py-3 focus:ring-2 focus:ring-amber-700 outline-none"
+                       type="text" name="nama" placeholder="Nama produk" required>
+
+                <input class="border rounded-lg px-4 py-3 focus:ring-2 focus:ring-amber-700 outline-none"
+                       type="number" name="harga" placeholder="Harga" required>
+
+                <input class="border rounded-lg px-4 py-3 focus:ring-2 focus:ring-amber-700 outline-none"
+                       type="number" name="stok" placeholder="Stok" required>
+
+                <input class="border rounded-lg px-4 py-3 focus:ring-2 focus:ring-amber-700 outline-none"
+                       type="text" name="deskripsi" placeholder="Deskripsi">
+
+                <input class="border rounded-lg px-4 py-3 focus:ring-2 focus:ring-amber-700 outline-none"
+                       type="file" name="gambar" accept="image/*" onchange="previewImage(event)">
             </div>
 
-            <br>
-            <button type="submit" class="btn btn-add">+ Tambah Produk</button>
+            <div class="mt-2">
+                <img id="preview"
+                     onclick="showImage(this.src)"
+                     class="w-20 h-20 object-cover rounded hidden cursor-pointer">
+            </div>
+
+            <button type="submit"
+                    class="mt-5 bg-amber-900 hover:bg-amber-800 text-white px-5 py-3 rounded-lg transition">
+                + Tambah Produk
+            </button>
         </form>
     </div>
 
     <!-- TABEL -->
-    <table>
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>Harga</th>
-                <th>Stok</th>
-                <th>Deskripsi</th>
-                <th>Gambar</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
+    <div class="overflow-x-auto rounded-xl border border-gray-200">
+        <table class="w-full border-collapse">
+            <thead>
+                <tr class="bg-amber-900 text-white">
+                    <th class="p-4 text-left">No</th>
+                    <th class="p-4 text-left">Nama</th>
+                    <th class="p-4 text-left">Harga</th>
+                    <th class="p-4 text-left">Stok</th>
+                    <th class="p-4 text-left">Deskripsi</th>
+                    <th class="p-4 text-left">Gambar</th>
+                    <th class="p-4 text-left">Aksi</th>
+                </tr>
+            </thead>
 
-       <tbody>
-@forelse($products as $product)
-    <tr>
-        <td>{{ $loop->iteration }}</td>
+            <tbody>
+                @forelse($products as $product)
+                    <tr class="hover:bg-amber-50 border-b">
 
-        <td><input form="update-{{ $product->id }}" type="text" name="nama" value="{{ $product->nama }}"></td>
-        <td><input form="update-{{ $product->id }}" type="number" name="harga" value="{{ $product->harga }}"></td>
-        <td><input form="update-{{ $product->id }}" type="number" name="stok" value="{{ $product->stok }}"></td>
-        <td><input form="update-{{ $product->id }}" type="text" name="deskripsi" value="{{ $product->deskripsi }}"></td>
-        <td><input form="update-{{ $product->id }}" type="text" name="gambar" value="{{ $product->gambar }}"></td>
+                        <td class="p-4">{{ $loop->iteration }}</td>
 
-        <td>
-            <div class="actions">
-                <form id="update-{{ $product->id }}" action="/products/{{ $product->id }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <button type="submit" class="btn btn-update">Update</button>
-                </form>
+                        <td class="p-3">
+                            <input type="text"
+                                   name="nama"
+                                   value="{{ $product->nama }}"
+                                   form="update-{{ $product->id }}"
+                                   class="border rounded-lg px-3 py-2 w-full">
+                        </td>
 
-                <form action="/products/{{ $product->id }}" method="POST" onsubmit="return confirm('Yakin hapus produk ini?')">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-delete">Hapus</button>
-                </form>
-            </div>
-        </td>
-    </tr>
-@empty
-    <tr>
-        <td colspan="7" class="empty">Belum ada data produk.</td>
-    </tr>
-@endforelse
-</tbody>
-    </table>
+                        <td class="p-3">
+                            <input type="number"
+                                   name="harga"
+                                   value="{{ $product->harga }}"
+                                   form="update-{{ $product->id }}"
+                                   class="border rounded-lg px-3 py-2 w-full">
+                        </td>
+
+                        <td class="p-3">
+                            <input type="number"
+                                   name="stok"
+                                   value="{{ $product->stok }}"
+                                   form="update-{{ $product->id }}"
+                                   class="border rounded-lg px-3 py-2 w-full">
+                        </td>
+
+                        <td class="p-3">
+                            <input type="text"
+                                   name="deskripsi"
+                                   value="{{ $product->deskripsi }}"
+                                   form="update-{{ $product->id }}"
+                                   class="border rounded-lg px-3 py-2 w-full">
+                        </td>
+
+                        <td class="p-3">
+
+                            @if($product->gambar)
+                                <img id="preview-update-{{ $product->id }}"
+                                     src="{{ asset('storage/' . $product->gambar) }}?v={{ time() }}"
+                                     onclick="showImage(this.src)"
+                                     class="w-20 h-20 object-cover rounded-lg border mb-2 cursor-pointer">
+                            @else
+                                <img id="preview-update-{{ $product->id }}"
+                                     onclick="showImage(this.src)"
+                                     class="w-20 h-20 object-cover rounded-lg border mb-2 hidden cursor-pointer">
+                            @endif
+
+                            <input type="file"
+                                   name="gambar"
+                                   accept="image/*"
+                                   form="update-{{ $product->id }}"
+                                   onchange="previewUpdateImage(event, {{ $product->id }})"
+                                   class="border rounded px-2 py-1 w-full">
+
+                        </td>
+
+                        <td class="p-4">
+                            <div class="flex gap-2">
+
+                                <form id="update-{{ $product->id }}"
+                                      action="/products/{{ $product->id }}"
+                                      method="POST"
+                                      enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+
+                                    <button type="submit"
+                                            class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg transition">
+                                        Update
+                                    </button>
+                                </form>
+
+                                <form action="/products/{{ $product->id }}" method="POST"
+                                      onsubmit="return confirm('Yakin hapus produk ini?')">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit"
+                                            class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition">
+                                        Hapus
+                                    </button>
+                                </form>
+
+                            </div>
+                        </td>
+
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="7" class="text-center text-gray-500 p-8">
+                            Belum ada data produk.
+                        </td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 
 </div>
+
+<div id="imageModal"
+     class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50"
+     onclick="closeImage()">
+
+    <img id="modalImage"
+         class="max-w-[90%] max-h-[90%] rounded-lg shadow-lg">
+</div>
+
+<script>
+function previewImage(event) {
+    const preview = document.getElementById('preview');
+
+    preview.src = URL.createObjectURL(event.target.files[0]);
+    preview.classList.remove('hidden');
+}
+
+function previewUpdateImage(event, id) {
+    const preview = document.getElementById('preview-update-' + id);
+
+    preview.src = URL.createObjectURL(event.target.files[0]);
+    preview.classList.remove('hidden');
+}
+
+function showImage(src) {
+    document.getElementById('modalImage').src = src;
+    document.getElementById('imageModal').classList.remove('hidden');
+    document.getElementById('imageModal').classList.add('flex');
+}
+
+function closeImage() {
+    document.getElementById('imageModal').classList.add('hidden');
+    document.getElementById('imageModal').classList.remove('flex');
+}
+</script>
 
 </body>
 </html>
