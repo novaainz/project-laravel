@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 
 // ================= LOGIN =================
 Route::get('/login', function () {
@@ -30,6 +31,12 @@ Route::get('/dashboard', function () {
 Route::get('/', function () {
     return view('home');
 });
+
+//================= Checkout =================
+
+Route::get('/order', [OrderController::class, 'index']);
+Route::post('/order', [OrderController::class, 'store']);
+Route::post('/checkout', [OrderController::class, 'checkout']);
 
 // ================= PROTECTED (HARUS LOGIN) =================
 Route::middleware('auth')->group(function () {
