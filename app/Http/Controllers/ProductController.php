@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -15,35 +16,60 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        Product::create([
-            'nama' => $request->nama,
-            'harga' => $request->harga,
-            'stok' => $request->stok,
-            'deskripsi' => $request->deskripsi,
-            'gambar' => $request->gambar
+        $data = $request->validate([
+            'nama' => 'required|string',
+            'harga' => 'required|numeric',
+            'stok' => 'required|numeric',
+            'deskripsi' => 'nullable|string',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:20480'
         ]);
 
-        return redirect()->back();
+        if ($request->hasFile('gambar')) {
+            $data['gambar'] = $request->file('gambar')->store('products', 'public');
+        }
+
+        Product::create($data);
+
+        return redirect('/products')->with('success', 'Produk berhasil ditambahkan!');
     }
 
-        public function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        $product = Product::find($id);
+        $product = Product::findOrFail($id);
 
-        $product->update([
-            'nama' => $request->nama,
-            'harga' => $request->harga,
-            'stok' => $request->stok,
-            'deskripsi' => $request->deskripsi,
-            'gambar' => $request->gambar
+        $data = $request->validate([
+            'nama' => 'required|string',
+            'harga' => 'required|numeric',
+            'stok' => 'required|numeric',
+            'deskripsi' => 'nullable|string',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:20480'
         ]);
 
-        return redirect()->back();
+        if ($request->hasFile('gambar')) {
+            if ($product->gambar && Storage::disk('public')->exists($product->gambar)) {
+                Storage::disk('public')->delete($product->gambar);
+            }
+
+            $data['gambar'] = $request->file('gambar')->store('products', 'public');
+        } else {
+            unset($data['gambar']);
+        }
+
+        $product->update($data);
+
+        return redirect('/products')->with('success', 'Produk berhasil diupdate!');
     }
 
-        public function destroy($id)
+    public function destroy($id)
     {
-        Product::destroy($id);
-        return redirect()->back();
+        $product = Product::findOrFail($id);
+
+        if ($product->gambar && Storage::disk('public')->exists($product->gambar)) {
+            Storage::disk('public')->delete($product->gambar);
+        }
+
+        $product->delete();
+
+        return redirect('/products')->with('success', 'Produk berhasil dihapus!');
     }
 }
