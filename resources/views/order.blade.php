@@ -181,11 +181,13 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/produk">Roti</a>
+            <a class="nav-link" href="/produk">Produk & Order</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" href="/order">Order</a>
+            <a class="nav-link" href="#contact">
+              Contact Us
+            </a>
           </li>
 
         </ul>
