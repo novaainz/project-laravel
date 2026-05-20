@@ -1,214 +1,576 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Daftar Produk</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kelola Produk</title>
+
+    <!-- TAILWIND -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- ICON -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
 </head>
-<body class="bg-gray-100 min-h-screen">
 
-<div class="w-[92%] mx-auto mt-10 bg-white p-8 rounded-2xl shadow-lg">
+<body class="min-h-screen bg-[#1A0508] text-white font-sans">
 
-    <div class="flex justify-between items-center mb-8">
-        <div>
-            <h1 class="text-3xl font-bold text-amber-900">Daftar Produk Toko Roti</h1>
-            <p class="text-gray-600 mt-2">Kelola data produk roti dengan mudah.</p>
+<div class="flex min-h-screen bg-gradient-to-br from-[#1A0508] via-[#2b0b18] to-[#FF6B35]">
+
+    <!-- SIDEBAR -->
+    <aside class="w-72 min-h-screen bg-white/10 backdrop-blur-xl border-r border-white/10 p-6 shadow-2xl relative">
+
+        <div class="mb-10">
+
+            <h2 class="text-3xl font-extrabold text-[#FF6B35]">
+                Toko Roti
+            </h2>
+
+            <p class="text-sm text-gray-300 mt-2">
+                Admin Panel
+            </p>
+
         </div>
 
-        <a href="/admin/dashboard"
-           class="bg-gray-600 hover:bg-gray-700 text-white px-5 py-2 rounded-lg transition">
-            Kembali
-        </a>
-    </div>
+        <nav class="space-y-4">
 
-    <!-- FORM TAMBAH -->
-    <div class="bg-amber-50 p-6 rounded-2xl mb-8 border border-amber-100">
-        <h2 class="text-xl font-bold text-amber-900 mb-4">Tambah Produk</h2>
+            <a href="/admin/dashboard"
+               class="flex items-center gap-3 px-5 py-4 rounded-2xl text-gray-300 hover:bg-white/10 transition">
 
-        <form action="/products" method="POST" enctype="multipart/form-data">
-            @csrf
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
 
-            <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
-                <input class="border rounded-lg px-4 py-3 focus:ring-2 focus:ring-amber-700 outline-none"
-                       type="text" name="nama" placeholder="Nama produk" required>
+                <span>Dashboard</span>
 
-                <input class="border rounded-lg px-4 py-3 focus:ring-2 focus:ring-amber-700 outline-none"
-                       type="number" name="harga" placeholder="Harga" required>
+            </a>
 
-                <input class="border rounded-lg px-4 py-3 focus:ring-2 focus:ring-amber-700 outline-none"
-                       type="number" name="stok" placeholder="Stok" required>
+            <a href="/products"
+               class="flex items-center gap-3 px-5 py-4 rounded-2xl bg-gradient-to-r from-[#FF6B35] to-purple-700 shadow-lg">
 
-                <input class="border rounded-lg px-4 py-3 focus:ring-2 focus:ring-amber-700 outline-none"
-                       type="text" name="deskripsi" placeholder="Deskripsi">
+                <i data-lucide="package" class="w-5 h-5"></i>
 
-                <input class="border rounded-lg px-4 py-3 focus:ring-2 focus:ring-amber-700 outline-none"
-                       type="file" name="gambar" accept="image/*" onchange="previewImage(event)">
+                <span>Kelola Produk</span>
+
+            </a>
+
+            <a href="/admin/riwayat-penjualan"
+               class="flex items-center gap-3 px-5 py-4 rounded-2xl text-gray-300 hover:bg-white/10 transition">
+
+                <i data-lucide="receipt-text" class="w-5 h-5"></i>
+
+                <span>Riwayat Penjualan</span>
+
+            </a>
+
+            <a href="/login"
+               class="flex items-center gap-3 px-5 py-4 rounded-2xl text-gray-300 hover:bg-red-500/20 transition">
+
+                <i data-lucide="log-out" class="w-5 h-5"></i>
+
+                <span>Logout</span>
+
+            </a>
+
+        </nav>
+
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="flex-1 p-8">
+
+        <!-- HEADER -->
+        <div class="flex justify-between items-center mb-8">
+
+            <div>
+
+                <h1 class="text-4xl font-extrabold">
+                    Kelola Produk
+                </h1>
+
+                <p class="text-gray-300 mt-2">
+                    Kelola data produk toko roti dengan tampilan modern.
+                </p>
+
             </div>
 
-            <div class="mt-2">
-                <img id="preview"
-                     onclick="showImage(this.src)"
-                     class="w-20 h-20 object-cover rounded hidden cursor-pointer">
+            <a href="/admin/dashboard"
+               class="bg-white/10 hover:bg-white/20 border border-white/10 px-5 py-3 rounded-2xl transition">
+
+                Kembali
+
+            </a>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+
+            <div class="bg-white/10 border border-white/10 rounded-3xl p-6">
+
+                <div class="flex justify-between items-center">
+
+                    <div>
+
+                        <p class="text-gray-300">
+                            Total Produk
+                        </p>
+
+                        <h3 class="text-3xl font-bold mt-2">
+                            {{ $products->count() }}
+                        </h3>
+
+                    </div>
+
+                    <div class="w-14 h-14 rounded-2xl bg-purple-600 flex items-center justify-center">
+
+                        <i data-lucide="package"></i>
+
+                    </div>
+
+                </div>
+
             </div>
 
-            <button type="submit"
-                    class="mt-5 bg-amber-900 hover:bg-amber-800 text-white px-5 py-3 rounded-lg transition">
-                + Tambah Produk
-            </button>
-        </form>
-    </div>
+            <div class="bg-white/10 border border-white/10 rounded-3xl p-6">
 
-    <!-- TABEL -->
-    <div class="overflow-x-auto rounded-xl border border-gray-200">
-        <table class="w-full border-collapse">
-            <thead>
-                <tr class="bg-amber-900 text-white">
-                    <th class="p-4 text-left">No</th>
-                    <th class="p-4 text-left">Nama</th>
-                    <th class="p-4 text-left">Harga</th>
-                    <th class="p-4 text-left">Stok</th>
-                    <th class="p-4 text-left">Deskripsi</th>
-                    <th class="p-4 text-left">Gambar</th>
-                    <th class="p-4 text-left">Aksi</th>
-                </tr>
-            </thead>
+                <div class="flex justify-between items-center">
 
-            <tbody>
-                @forelse($products as $product)
-                    <tr class="hover:bg-amber-50 border-b">
+                    <div>
 
-                        <td class="p-4">{{ $loop->iteration }}</td>
+                        <p class="text-gray-300">
+                            Produk Aktif
+                        </p>
 
-                        <td class="p-3">
-                            <input type="text"
-                                   name="nama"
-                                   value="{{ $product->nama }}"
-                                   form="update-{{ $product->id }}"
-                                   class="border rounded-lg px-3 py-2 w-full">
-                        </td>
+                        <h3 class="text-3xl font-bold mt-2">
+                            {{ $products->count() }}
+                        </h3>
 
-                        <td class="p-3">
-                            <input type="number"
-                                   name="harga"
-                                   value="{{ $product->harga }}"
-                                   form="update-{{ $product->id }}"
-                                   class="border rounded-lg px-3 py-2 w-full">
-                        </td>
+                    </div>
 
-                        <td class="p-3">
-                            <input type="number"
-                                   name="stok"
-                                   value="{{ $product->stok }}"
-                                   form="update-{{ $product->id }}"
-                                   class="border rounded-lg px-3 py-2 w-full">
-                        </td>
+                    <div class="w-14 h-14 rounded-2xl bg-green-600 flex items-center justify-center">
 
-                        <td class="p-3">
-                            <input type="text"
-                                   name="deskripsi"
-                                   value="{{ $product->deskripsi }}"
-                                   form="update-{{ $product->id }}"
-                                   class="border rounded-lg px-3 py-2 w-full">
-                        </td>
+                        <i data-lucide="badge-check"></i>
 
-                        <td class="p-3">
+                    </div>
 
-                            @if($product->gambar)
-                                <img id="preview-update-{{ $product->id }}"
-                                     src="{{ asset('storage/' . $product->gambar) }}?v={{ time() }}"
-                                     onclick="showImage(this.src)"
-                                     class="w-20 h-20 object-cover rounded-lg border mb-2 cursor-pointer">
-                            @else
-                                <img id="preview-update-{{ $product->id }}"
-                                     onclick="showImage(this.src)"
-                                     class="w-20 h-20 object-cover rounded-lg border mb-2 hidden cursor-pointer">
-                            @endif
+                </div>
 
-                            <input type="file"
-                                   name="gambar"
-                                   accept="image/*"
-                                   form="update-{{ $product->id }}"
-                                   onchange="previewUpdateImage(event, {{ $product->id }})"
-                                   class="border rounded px-2 py-1 w-full">
+            </div>
 
-                        </td>
+            <div class="bg-white/10 border border-white/10 rounded-3xl p-6">
 
-                        <td class="p-4">
-                            <div class="flex gap-2">
+                <div class="flex justify-between items-center">
 
-                                <form id="update-{{ $product->id }}"
-                                      action="/products/{{ $product->id }}"
-                                      method="POST"
-                                      enctype="multipart/form-data">
-                                    @csrf
-                                    @method('PUT')
+                    <div>
 
-                                    <button type="submit"
-                                            class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg transition">
-                                        Update
-                                    </button>
-                                </form>
+                        <p class="text-gray-300">
+                            Stok Rendah
+                        </p>
 
-                                <form action="/products/{{ $product->id }}" method="POST"
-                                      onsubmit="return confirm('Yakin hapus produk ini?')">
-                                    @csrf
-                                    @method('DELETE')
+                      <h3 class="text-3xl font-bold mt-2">
+                     {{ \App\Models\Product::where('stok', '<=', 5)->count() }}
+                    </h3>
 
-                                    <button type="submit"
-                                            class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition">
-                                        Hapus
-                                    </button>
-                                </form>
+                    </div>
 
-                            </div>
-                        </td>
+                    <div class="w-14 h-14 rounded-2xl bg-red-500 flex items-center justify-center">
 
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="7" class="text-center text-gray-500 p-8">
-                            Belum ada data produk.
-                        </td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
+                        <i data-lucide="alert-triangle"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- FORM -->
+        <div class="bg-white/10 border border-white/10 rounded-3xl p-8 mb-8 shadow-2xl backdrop-blur-xl">
+
+            <div class="flex justify-between items-center mb-6">
+
+                <h2 class="text-2xl font-bold">
+                    Tambah Produk
+                </h2>
+
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-r from-[#FF6B35] to-purple-700 flex items-center justify-center">
+
+                    <i data-lucide="plus"></i>
+
+                </div>
+
+            </div>
+
+            <form action="/products" method="POST" enctype="multipart/form-data">
+                @csrf
+
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+
+                    <input type="text"
+                           name="nama"
+                           placeholder="Nama produk"
+                           required
+                           class="bg-black/20 border border-white/10 rounded-2xl px-4 py-4 text-white placeholder-gray-400 outline-none focus:border-[#FF6B35]">
+
+                    <input type="number"
+                           name="harga"
+                           placeholder="Harga"
+                           required
+                           class="bg-black/20 border border-white/10 rounded-2xl px-4 py-4 text-white placeholder-gray-400 outline-none focus:border-[#FF6B35]">
+
+                    <input type="number"
+                           name="stok"
+                           placeholder="Stok"
+                           required
+                           class="bg-black/20 border border-white/10 rounded-2xl px-4 py-4 text-white placeholder-gray-400 outline-none focus:border-[#FF6B35]">
+
+                    <input type="text"
+                           name="deskripsi"
+                           placeholder="Deskripsi"
+                           class="bg-black/20 border border-white/10 rounded-2xl px-4 py-4 text-white placeholder-gray-400 outline-none focus:border-[#FF6B35]">
+
+                    <div class="relative">
+
+    <input type="file"
+           name="gambar"
+           id="gambar"
+           accept="image/*"
+           onchange="previewImage(event)"
+           class="hidden">
+
+    <label for="gambar"
+           class="flex items-center justify-center gap-3 bg-black/20 hover:bg-black/30 border border-white/10 rounded-2xl px-5 py-4 cursor-pointer transition text-gray-300">
+
+        <i data-lucide="image-plus"
+           class="w-5 h-5 text-[#FF6B35]"></i>
+
+        <span>Pilih Gambar</span>
+
+    </label>
 
 </div>
 
+                </div>
+
+                <div class="mt-5">
+
+                    <img id="preview"
+                         onclick="showImage(this.src)"
+                         class="w-24 h-24 object-cover rounded-2xl hidden cursor-pointer border border-white/10 shadow-lg">
+
+                </div>
+
+                <button type="submit"
+                        class="mt-6 bg-gradient-to-r from-[#FF6B35] to-purple-700 hover:scale-105 transition px-6 py-4 rounded-2xl font-semibold shadow-xl">
+
+                    + Tambah Produk
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- TABLE -->
+        <div class="bg-white/10 border border-white/10 rounded-3xl overflow-hidden shadow-2xl backdrop-blur-xl">
+
+            <div class="p-6 border-b border-white/10">
+
+                <div class="flex justify-between items-center">
+
+                    <h2 class="text-2xl font-bold">
+                        Daftar Produk
+                    </h2>
+
+                    <div class="relative">
+
+                        <form method="GET" action="/products">
+
+    <input type="text"
+           name="search"
+           value="{{ request('search') }}"
+           placeholder="Cari produk..."
+           class="bg-black/20 border border-white/10 rounded-2xl px-5 py-3 pl-12 text-white placeholder-gray-400 outline-none w-full">
+
+</form>
+
+                        <i data-lucide="search"
+                           class="absolute left-4 top-3.5 w-5 h-5 text-gray-400"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="overflow-x-auto">
+
+                <table class="w-full">
+
+                    <thead>
+
+                        <tr class="bg-black/20 text-left">
+
+                            <th class="p-5">No</th>
+                            <th class="p-5">Nama</th>
+                            <th class="p-5">Harga</th>
+                            <th class="p-5">Stok</th>
+                            <th class="p-5">Deskripsi</th>
+                            <th class="p-5">Gambar</th>
+                            <th class="p-5">Aksi</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @forelse($products as $product)
+
+                        <tr class="border-b border-white/10 hover:bg-white/5 transition">
+
+                            <td class="p-4">
+                                {{ $loop->iteration }}
+                            </td>
+
+                            <td class="p-4">
+
+                                <input type="text"
+                                       name="nama"
+                                       value="{{ $product->nama }}"
+                                       form="update-{{ $product->id }}"
+                                       class="bg-black/20 border border-white/10 rounded-xl px-3 py-2 w-full text-white">
+
+                            </td>
+
+                            <td class="p-4">
+
+                                <input type="number"
+                                       name="harga"
+                                       value="{{ $product->harga }}"
+                                       form="update-{{ $product->id }}"
+                                       class="bg-black/20 border border-white/10 rounded-xl px-3 py-2 w-full text-white">
+
+                            </td>
+
+                            <td class="p-4">
+
+                                <input type="number"
+                                       name="stok"
+                                       value="{{ $product->stok }}"
+                                       form="update-{{ $product->id }}"
+                                       class="bg-black/20 border border-white/10 rounded-xl px-3 py-2 w-full text-white">
+
+                            </td>
+
+                            <td class="p-4">
+
+                                <input type="text"
+                                       name="deskripsi"
+                                       value="{{ $product->deskripsi }}"
+                                       form="update-{{ $product->id }}"
+                                       class="bg-black/20 border border-white/10 rounded-xl px-3 py-2 w-full text-white">
+
+                            </td>
+
+                            <td class="p-4">
+
+                                @if($product->gambar)
+
+                                    <img id="preview-update-{{ $product->id }}"
+                                         src="{{ asset('storage/' . $product->gambar) }}?v={{ time() }}"
+                                         onclick="showImage(this.src)"
+                                         class="w-24 h-24 object-cover rounded-2xl border border-white/10 mb-3 cursor-pointer shadow-lg">
+
+                                @else
+
+                                    <img id="preview-update-{{ $product->id }}"
+                                         class="w-24 h-24 object-cover rounded-2xl border border-white/10 mb-3 hidden">
+
+                                @endif
+
+                                <div class="relative">
+
+                                 <input type="file"
+           name="gambar"
+           id="gambar-{{ $product->id }}"
+           accept="image/*"
+           form="update-{{ $product->id }}"
+           onchange="previewUpdateImage(event, {{ $product->id }})"
+           class="hidden">
+
+    <label for="gambar-{{ $product->id }}"
+           class="flex items-center justify-center gap-2 bg-black/20 hover:bg-black/30 border border-white/10 rounded-xl px-4 py-3 cursor-pointer transition text-sm text-gray-300">
+
+        <i data-lucide="upload"
+           class="w-4 h-4 text-[#FF6B35]"></i>
+
+        <span>Upload</span>
+
+    </label>
+
+</div>
+
+                            </td>
+
+                            <td class="p-4">
+
+                                <div class="flex gap-2">
+
+                                    <form id="update-{{ $product->id }}"
+                                          action="/products/{{ $product->id }}"
+                                          method="POST"
+                                          enctype="multipart/form-data">
+
+                                        @csrf
+                                        @method('PUT')
+
+                                        <button type="submit"
+                                                class="bg-yellow-500 hover:bg-yellow-600 px-4 py-3 rounded-xl text-white transition">
+
+                                            Update
+
+                                        </button>
+
+                                    </form>
+
+                                   <form id="delete-form-{{ $product->id }}"
+      action="/products/{{ $product->id }}"
+      method="POST">
+
+    @csrf
+    @method('DELETE')
+
+    <button type="button"
+            onclick="confirmDelete('delete-form-{{ $product->id }}')"
+            class="bg-red-600 hover:bg-red-700 px-4 py-3 rounded-xl text-white transition">
+
+        Hapus
+
+    </button>
+
+</form>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                        @empty
+
+                        <tr>
+
+                            <td colspan="7" class="text-center text-gray-400 py-10">
+
+                                Belum ada data produk.
+
+                            </td>
+
+                        </tr>
+
+                        @endforelse
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<!-- MODAL -->
 <div id="imageModal"
-     class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50"
+     class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50"
      onclick="closeImage()">
 
     <img id="modalImage"
-         class="max-w-[90%] max-h-[90%] rounded-lg shadow-lg">
+         class="max-w-[90%] max-h-[90%] rounded-3xl shadow-2xl">
+
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
+
 function previewImage(event) {
+
     const preview = document.getElementById('preview');
 
     preview.src = URL.createObjectURL(event.target.files[0]);
+
     preview.classList.remove('hidden');
+
 }
 
 function previewUpdateImage(event, id) {
+
     const preview = document.getElementById('preview-update-' + id);
 
     preview.src = URL.createObjectURL(event.target.files[0]);
+
     preview.classList.remove('hidden');
+
 }
 
 function showImage(src) {
+
     document.getElementById('modalImage').src = src;
+
     document.getElementById('imageModal').classList.remove('hidden');
+
     document.getElementById('imageModal').classList.add('flex');
+
 }
 
 function closeImage() {
+
     document.getElementById('imageModal').classList.add('hidden');
+
     document.getElementById('imageModal').classList.remove('flex');
+
 }
+
+function confirmDelete(formId) {
+
+    Swal.fire({
+
+        title: 'Hapus Produk?',
+        text: "Produk akan dihapus permanen!",
+        icon: 'warning',
+
+        background: '#2b0b18',
+        color: '#ffffff',
+
+        showCancelButton: true,
+
+        confirmButtonColor: '#ef4444',
+        cancelButtonColor: '#6b7280',
+
+        confirmButtonText: 'Ya, Hapus',
+        cancelButtonText: 'Batal',
+
+        borderRadius: '20px'
+
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+
+            document.getElementById(formId).submit();
+
+        }
+
+    });
+
+}
+
+lucide.createIcons();
+
 </script>
 
 </body>

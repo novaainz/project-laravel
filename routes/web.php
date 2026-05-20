@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\SaleController;
 
 // ================= LOGIN =================
 Route::get('/login', function () {
@@ -21,30 +22,30 @@ Route::post('/login', function (Request $request) {
 });
 
 // ================= HOME =================
-Route::get('/dashboard', [HomeController::class, 'index']);
-
-Route::get('/dashboard', function () {
-    $products = [];
-    return view('home', compact('products'));
-});
-
 Route::get('/', function () {
     return view('home');
 });
 
-//================= Checkout =================
+Route::get('/dashboard', [HomeController::class, 'index']);
 
+// ================= CHECKOUT =================
 Route::get('/order', [OrderController::class, 'index']);
 Route::post('/order', [OrderController::class, 'store']);
 Route::post('/checkout', [OrderController::class, 'checkout']);
 
-// ================= PROTECTED (HARUS LOGIN) =================
+// ================= PROTECTED =================
 Route::middleware('auth')->group(function () {
-    
+
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
     });
 
+// RIWAYAT PENJUALAN REAL DATABASE
+Route::get('/admin/riwayat-penjualan', [SaleController::class, 'index']);
+Route::post('/admin/riwayat-penjualan', [SaleController::class, 'store']);
+Route::delete('/admin/riwayat-penjualan/{id}', [SaleController::class, 'destroy']);
+
+    // PRODUK
     Route::get('/products', [ProductController::class, 'index'])->name('products.index');
     Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
     Route::post('/products', [ProductController::class, 'store'])->name('products.store');
@@ -54,6 +55,7 @@ Route::middleware('auth')->group(function () {
 
 });
 
+// ================= LOGOUT =================
 Route::post('/logout', function () {
     Auth::logout();
     return redirect('/login');
