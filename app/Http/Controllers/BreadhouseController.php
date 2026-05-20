@@ -24,6 +24,15 @@ class BreadhouseController extends Controller
         return view('produk', compact('products'));
     }
 
+    //DETAIL
+    public function detail($id)
+    {
+
+    $product = Product::findOrFail($id);
+
+        return view('detail', compact('product'));
+
+    }
 
     // ORDER
     public function order()

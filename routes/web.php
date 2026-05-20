@@ -39,9 +39,9 @@ Route::get('/produk', function () {
 
 Route::get('/riwayat-pemesanan', [BreadhouseController::class, 'riwayat']);
 
-//================= Deskripsi =================
+//================= Detail =================
 
-Route::get('/deskripsi', [DesksripsiController::class, 'Deskripsi']);
+Route::get('/produk/{id}', [BreadhouseController::class, 'detail']);
 
 //================= Checkout =================
 Route::get('/dashboard', [HomeController::class, 'index']);

@@ -238,6 +238,12 @@
         Rp {{ number_format($product->harga, 0, ',', '.') }}
       </div>
 
+      <div>
+      <a href="/produk/{{ $product->id }}" class="btn btn-bread">
+        Detail
+      </a>
+      </div>
+
       <a href="/order"
          class="btn btn-order">
 

@@ -312,7 +312,7 @@
 
       <div class="row g-4">
 
-        <!-- Produk 1 -->
+        <!-- Produk -->
         <div class="col-lg-3 col-md-6">
           <div class="card product-card">
 
