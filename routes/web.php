@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\BreadhouseController;
 
 // ================= LOGIN =================
 Route::get('/login', function () {
@@ -31,6 +32,18 @@ Route::get('/dashboard', function () {
 Route::get('/', function () {
     return view('home');
 });
+
+//================= Produk =================
+
+Route::get('/produk', [BreadhouseController::class, 'produk']);
+
+//================= Riwayat Order =================
+
+Route::get('/riwayat-pemesanan', [BreadhouseController::class, 'riwayat']);
+
+//================= Deskripsi =================
+
+Route::get('/deskripsi', [DesksripsiController::class, 'Deskripsi']);
 
 //================= Checkout =================
 
