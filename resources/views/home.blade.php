@@ -270,10 +270,6 @@
             <a class="nav-link active" href="/order">Order</a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="/riwayat-pemesanan">Riwayat</a>
-          </li>
-
         </ul>
 
       </div>
