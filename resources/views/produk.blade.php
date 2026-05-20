@@ -216,161 +216,46 @@
 
       <div class="row g-4">
 
-        <!-- Card 1 -->
+@foreach($products as $product)
 
-        <div class="col-lg-4 col-md-6">
+<div class="col-lg-4 col-md-6">
 
-          <div class="product-card">
+  <div class="product-card">
 
-            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1200&auto=format&fit=crop">
+    @if($product->gambar)
 
-            <div class="product-body">
+      <img src="{{ asset('storage/' . $product->gambar) }}">
 
-              <h4>Roti Almond</h4>
+    @else
 
-              <div class="price">
-                Rp 20.000
-              </div>
+      <img src="https://via.placeholder.com/400x300">
 
-              <button class="btn-order">
-                Order
-              </button>
+    @endif
 
-            </div>
+    <div class="product-body">
 
-          </div>
+      <h4>
+        {{ $product->nama }}
+      </h4>
 
-        </div>
+      <div class="price">
+        Rp {{ number_format($product->harga, 0, ',', '.') }}
+      </div>
 
-        <!-- Card 2 -->
+      <a href="/order"
+         class="btn btn-order">
 
-        <div class="col-lg-4 col-md-6">
+        Order
 
-          <div class="product-card">
+      </a>
 
-            <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=1200&auto=format&fit=crop">
+    </div>
 
-            <div class="product-body">
+  </div>
 
-              <h4>Roti Cokelat</h4>
+</div>
 
-              <div class="price">
-                Rp 18.000
-              </div>
-
-              <button class="btn-order">
-                Order
-              </button>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <!-- Card 3 -->
-
-        <div class="col-lg-4 col-md-6">
-
-          <div class="product-card">
-
-            <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?q=80&w=1200&auto=format&fit=crop">
-
-            <div class="product-body">
-
-              <h4>Roti Keju</h4>
-
-              <div class="price">
-                Rp 19.000
-              </div>
-
-              <button class="btn-order">
-                Order
-              </button>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <!-- Card 4 -->
-
-        <div class="col-lg-4 col-md-6">
-
-          <div class="product-card">
-
-            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=1200&auto=format&fit=crop">
-
-            <div class="product-body">
-
-              <h4>Roti Sosis</h4>
-
-              <div class="price">
-                Rp 22.000
-              </div>
-
-              <button class="btn-order">
-                Order
-              </button>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <!-- Card 5 -->
-
-        <div class="col-lg-4 col-md-6">
-
-          <div class="product-card">
-
-            <img src="https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?q=80&w=1200&auto=format&fit=crop">
-
-            <div class="product-body">
-
-              <h4>Roti Garlic</h4>
-
-              <div class="price">
-                Rp 24.000
-              </div>
-
-              <button class="btn-order">
-                Order
-              </button>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <!-- Card 6 -->
-
-        <div class="col-lg-4 col-md-6">
-
-          <div class="product-card">
-
-            <img src="https://images.unsplash.com/photo-1519869325930-281384150729?q=80&w=1200&auto=format&fit=crop">
-
-            <div class="product-body">
-
-              <h4>Roti Strawberry</h4>
-
-              <div class="price">
-                Rp 21.000
-              </div>
-
-              <button class="btn-order">
-                Order
-              </button>
-
-            </div>
-
-          </div>
-
-        </div>
+@endforeach
 
       </div>
 

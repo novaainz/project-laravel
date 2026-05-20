@@ -215,13 +215,13 @@
                     Penjualan Hari Ini
                 </p>
 
-                <h3 class="text-3xl font-extrabold mt-2">
-                    Rp {{ number_format(\App\Models\Product::sum('harga'), 0, ',', '.') }}
-                </h3>
+               <h3 class="text-3xl font-extrabold mt-2">
+    Rp {{ number_format(\App\Models\Sale::sum('total_harga'), 0, ',', '.') }}
+</h3>
 
-                <p class="text-sm text-green-400 mt-2">
-                    +12.5% dari kemarin
-                </p>
+<p class="text-sm text-green-400 mt-2">
+    Data penjualan real
+</p>
 
             </div>
 
