@@ -575,19 +575,28 @@
         <!-- Sosial Media -->
         <div class="mt-4 d-flex gap-3">
 
-          <a href="#" class="btn btn-dark rounded-circle">
+          <a href="https://instagram.com/thebreadhouse"
+             target="_blank"
+             class="btn btn-dark rounded-circle">
+
             <i class="bi bi-instagram"></i>
           </a>
 
-          <a href="#" class="btn btn-dark rounded-circle">
-            <i class="bi bi-facebook"></i>
+          <a href="https://facebook.com/thebreadhouse"
+             target="_blank"
+             class="btn btn-dark rounded-circle">
+
+             <i class="bi bi-facebook"></i>
           </a>
 
-          <a href="#" class="btn btn-dark rounded-circle">
-            <i class="bi bi-youtube"></i>
+          <a href="https://youtube.com/@thebreadhouse"
+             target="_blank"
+             class="btn btn-dark rounded-circle">
+
+             <i class="bi bi-youtube"></i>
           </a>
 
-          <a href="https://wa.me/6285794039638"
+          <a href="https://wa.me/62882877445619"
              class="btn btn-success rounded-circle">
             <i class="bi bi-whatsapp"></i>
           </a>
