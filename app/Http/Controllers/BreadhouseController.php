@@ -28,9 +28,19 @@ class BreadhouseController extends Controller
     public function detail($id)
     {
 
-    $product = Product::findOrFail($id);
+        // Ambil produk berdasarkan id
+        $product = Product::findOrFail($id);
 
-        return view('detail', compact('product'));
+        // Produk lainnya
+        $relatedProducts = Product::where('id', '!=', $id)
+                            ->latest()
+                            ->take(4)
+                            ->get();
+
+        return view('detail', compact(
+            'product',
+            'relatedProducts'
+        ));
 
     }
 
