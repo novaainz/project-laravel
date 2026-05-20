@@ -263,11 +263,13 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/produk">Roti</a>
+            <a class="nav-link" href="/produk">Produk & Order</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" href="/order">Order</a>
+            <a class="nav-link" href="#contact">
+              Contact Us
+            </a>
           </li>
 
         </ul>
@@ -502,12 +504,6 @@
               untuk ulang tahun, meeting, arisan,
               dan acara lainnya.
             </p>
-
-           <a href="https://wa.me/085794039638" 
-            class="btn btn-outline-dark btn-lg rounded-4 px-4 py-3">
-            <i class="bi bi-whatsapp me-2"></i>
-            Hubungi Kami
-            </a>
           </div>
 
         </div>
@@ -517,6 +513,94 @@
     </div>
   </section>
 
+  <!-- Contact Us -->
+<section id="contact" class="section-space bg-white">
+
+  <div class="container">
+
+    <div class="text-center mb-5">
+
+      <h2 class="section-title">
+        Contact Us
+      </h2>
+
+      <p>
+        Hubungi kami untuk pemesanan dan informasi lebih lanjut.
+      </p>
+
+    </div>
+
+    <div class="row g-5">
+
+      <!-- Google Maps -->
+      <div class="col-lg-6">
+
+        <div class="rounded-4 overflow-hidden shadow-sm">
+
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18..."
+            width="100%"
+            height="350"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy">
+          </iframe>
+
+        </div>
+
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-lg-6 d-flex flex-column justify-content-center">
+
+        <h4 class="mb-4">
+          The Breadhouse
+        </h4>
+
+        <p>
+          <i class="bi bi-geo-alt-fill me-2"></i>
+          Bandar Lampung, Indonesia
+        </p>
+
+        <p>
+          <i class="bi bi-whatsapp me-2"></i>
+          0882-7744-5619
+        </p>
+
+        <p>
+          <i class="bi bi-envelope-fill me-2"></i>
+          breadhouse@gmail.com
+        </p>
+
+        <!-- Sosial Media -->
+        <div class="mt-4 d-flex gap-3">
+
+          <a href="#" class="btn btn-dark rounded-circle">
+            <i class="bi bi-instagram"></i>
+          </a>
+
+          <a href="#" class="btn btn-dark rounded-circle">
+            <i class="bi bi-facebook"></i>
+          </a>
+
+          <a href="#" class="btn btn-dark rounded-circle">
+            <i class="bi bi-youtube"></i>
+          </a>
+
+          <a href="https://wa.me/6285794039638"
+             class="btn btn-success rounded-circle">
+            <i class="bi bi-whatsapp"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
   <!-- Footer -->
   <footer>
     <div class="container">
@@ -524,7 +608,7 @@
       <div class="d-flex justify-content-between align-items-center">
 
         <p class="mb-0">
-          © 2024 The Breadhouse. All Rights Reserved.
+          © 2026 The Breadhouse. All Rights Reserved.
         </p>
 
         <div class="social">
