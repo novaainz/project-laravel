@@ -8,11 +8,18 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    public function index()
-    {
-        $products = Product::all();
-        return view('products.index', compact('products'));
-    }
+  public function index(Request $request)
+{
+    $search = $request->search;
+
+    $products = Product::when($search, function ($query, $search) {
+
+        return $query->where('nama', 'like', "%{$search}%");
+
+    })->get();
+
+    return view('products.index', compact('products'));
+}
 
     public function store(Request $request)
     {
