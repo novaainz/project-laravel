@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\Product;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
@@ -29,7 +30,10 @@ Route::get('/', function () {
 
 //================= Produk =================
 
-Route::get('/produk', [BreadhouseController::class, 'produk']);
+Route::get('/produk', function () {
+    $products = Product::all();
+    return view('produk', compact('products'));
+});
 
 //================= Riwayat Order =================
 
