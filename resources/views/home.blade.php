@@ -294,10 +294,6 @@
             Dibuat dengan bahan berkualitas dan penuh cinta
             untuk setiap gigitan terbaik.
           </p>
-
-          <button class="btn btn-bread">
-            Lihat Menu
-          </button>
         </div>
 
       </div>
@@ -323,10 +319,6 @@
             <div class="product-body text-center">
               <h5 class="product-title">Roti Cokelat</h5>
               <p class="price">Rp 18.000</p>
-
-              <button class="btn btn-bread">
-                Order
-              </button>
             </div>
 
           </div>
@@ -341,10 +333,6 @@
             <div class="product-body text-center">
               <h5 class="product-title">Roti Almond</h5>
               <p class="price">Rp 20.000</p>
-
-              <button class="btn btn-bread">
-                Order
-              </button>
             </div>
 
           </div>
@@ -359,10 +347,6 @@
             <div class="product-body text-center">
               <h5 class="product-title">Roti Keju</h5>
               <p class="price">Rp 18.000</p>
-
-              <button class="btn btn-bread">
-                Order
-              </button>
             </div>
 
           </div>
@@ -386,10 +370,6 @@
               </small>
 
               <p class="price">Rp 18.000</p>
-
-              <button class="btn btn-bread">
-                Order
-              </button>
             </div>
 
           </div>
@@ -569,7 +549,7 @@
 
         <p>
           <i class="bi bi-envelope-fill me-2"></i>
-          breadhouse@gmail.com
+          thebreadhouse@gmail.com
         </p>
 
         <!-- Sosial Media -->
