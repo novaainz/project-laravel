@@ -183,7 +183,7 @@
                     {{ \App\Models\Product::count() }}
                 </h3>
 
-                <p class="text-sm text-green-400 mt-2">
+                <p class="text-sm text-white-400 mt-2">
                     Produk tersedia
                 </p>
 
@@ -206,7 +206,7 @@
     Rp {{ number_format(\App\Models\Sale::sum('total_harga'), 0, ',', '.') }}
 </h3>
 
-<p class="text-sm text-green-400 mt-2">
+<p class="text-sm text-white-400 mt-2">
     Data penjualan real
 </p>
 
@@ -252,7 +252,7 @@
                     {{ \App\Models\Product::where('stok', '<=', 5)->count() }}
                 </h3>
 
-                <p class="text-sm text-red-300 mt-2">
+                <p class="text-sm text-white-300 mt-2">
                     Perlu restock
                 </p>
 
@@ -272,10 +272,9 @@
                         Grafik Penjualan
                     </h3>
 
-                    <<button class="bg-[#7B5235] hover:bg-[#69442C] text-sm px-4 py-2 rounded-xl border border-[#8F6545] text-white transition">
-                        7 Hari Terakhir
-                    </button>
-
+                   <button class="bg-[#7B5235] hover:bg-[#69442C] text-sm px-4 py-2 rounded-xl border border-[#8F6545] text-white transition">
+                         7 Hari Terakhir
+                </button>
                 </div>
 
                 <div class="bg-black/20 rounded-2xl p-4 h-72">
