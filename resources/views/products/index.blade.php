@@ -14,18 +14,18 @@
 
 </head>
 
-<body class="min-h-screen bg-[#1A0508] text-white font-sans">
+<body class="min-h-screen bg-[#3A1F12] text-white font-sans">
 
-<div class="flex min-h-screen bg-gradient-to-br from-[#1A0508] via-[#2b0b18] to-[#FF6B35]">
+<div class="flex min-h-screen bg-[#3A1F12]">
 
     <!-- SIDEBAR -->
     <aside class="w-72 min-h-screen bg-white/10 backdrop-blur-xl border-r border-white/10 p-6 shadow-2xl relative">
 
         <div class="mb-10">
 
-            <h2 class="text-3xl font-extrabold text-[#FF6B35]">
-                Toko Roti
-            </h2>
+<h2 class="text-4xl font-extrabold text-white tracking-tight">
+    The Breadhouse
+</h2>
 
             <p class="text-sm text-gray-300 mt-2">
                 Admin Panel
@@ -45,7 +45,7 @@
             </a>
 
             <a href="/products"
-               class="flex items-center gap-3 px-5 py-4 rounded-2xl bg-gradient-to-r from-[#FF6B35] to-purple-700 shadow-lg">
+               class="flex items-center gap-3 px-5 py-4 rounded-2xl bg-[#D19052] text-white shadow-lg hover:bg-[#C17E3E] transition">
 
                 <i data-lucide="package" class="w-5 h-5"></i>
 
@@ -94,7 +94,7 @@
             </div>
 
             <a href="/admin/dashboard"
-               class="bg-white/10 hover:bg-white/20 border border-white/10 px-5 py-3 rounded-2xl transition">
+               class="bg-[#7B5235] hover:bg-[#69442C] border border-[#8F6545] px-5 py-3 rounded-2xl transition text-white">
 
                 Kembali
 
@@ -121,7 +121,7 @@
 
                     </div>
 
-                    <div class="w-14 h-14 rounded-2xl bg-purple-600 flex items-center justify-center">
+                    <div class="w-14 h-14 rounded-2xl bg-[#D19052] flex items-center justify-center">
 
                         <i data-lucide="package"></i>
 
@@ -194,12 +194,6 @@
                     Tambah Produk
                 </h2>
 
-                <div class="w-12 h-12 rounded-2xl bg-gradient-to-r from-[#FF6B35] to-purple-700 flex items-center justify-center">
-
-                    <i data-lucide="plus"></i>
-
-                </div>
-
             </div>
 
             <form action="/products" method="POST" enctype="multipart/form-data">
@@ -211,24 +205,24 @@
                            name="nama"
                            placeholder="Nama produk"
                            required
-                           class="bg-black/20 border border-white/10 rounded-2xl px-4 py-4 text-white placeholder-gray-400 outline-none focus:border-[#FF6B35]">
+                           class="bg-black/20 border border-white/10 rounded-2xl px-4 py-4 text-white placeholder-gray-400 outline-none focus:border-[#D19052]">
 
                     <input type="number"
                            name="harga"
                            placeholder="Harga"
                            required
-                           class="bg-black/20 border border-white/10 rounded-2xl px-4 py-4 text-white placeholder-gray-400 outline-none focus:border-[#FF6B35]">
+                           class="bg-black/20 border border-white/10 rounded-2xl px-4 py-4 text-white placeholder-gray-400 outline-none focus:border-[#D19052]">
 
                     <input type="number"
                            name="stok"
                            placeholder="Stok"
                            required
-                           class="bg-black/20 border border-white/10 rounded-2xl px-4 py-4 text-white placeholder-gray-400 outline-none focus:border-[#FF6B35]">
+                           class="bg-black/20 border border-white/10 rounded-2xl px-4 py-4 text-white placeholder-gray-400 outline-none focus:border-[#D19052]">
 
                     <input type="text"
                            name="deskripsi"
                            placeholder="Deskripsi"
-                           class="bg-black/20 border border-white/10 rounded-2xl px-4 py-4 text-white placeholder-gray-400 outline-none focus:border-[#FF6B35]">
+                           class="bg-black/20 border border-white/10 rounded-2xl px-4 py-4 text-white placeholder-gray-400 outline-none focus:border-[#D19052]">
 
                     <div class="relative">
 
@@ -243,7 +237,7 @@
            class="flex items-center justify-center gap-3 bg-black/20 hover:bg-black/30 border border-white/10 rounded-2xl px-5 py-4 cursor-pointer transition text-gray-300">
 
         <i data-lucide="image-plus"
-           class="w-5 h-5 text-[#FF6B35]"></i>
+           class="w-5 h-5 text-[#D19052]"></i>
 
         <span>Pilih Gambar</span>
 
@@ -262,7 +256,7 @@
                 </div>
 
                 <button type="submit"
-                        class="mt-6 bg-gradient-to-r from-[#FF6B35] to-purple-700 hover:scale-105 transition px-6 py-4 rounded-2xl font-semibold shadow-xl">
+                        class="mt-6 bg-[#D19052] hover:bg-[#C17E3E] transition px-6 py-4 rounded-2xl font-semibold shadow-xl">
 
                     + Tambah Produk
 
@@ -291,7 +285,7 @@
            name="search"
            value="{{ request('search') }}"
            placeholder="Cari produk..."
-           class="bg-black/20 border border-white/10 rounded-2xl px-5 py-3 pl-12 text-white placeholder-gray-400 outline-none w-full">
+           class="bg-black/20 border border-white/10 rounded-2xl px-5 py-3 pl-12 text-white placeholder-gray-400 outline-none w-full focus:border-[#D19052]">
 
 </form>
 
@@ -340,7 +334,7 @@
                                        name="nama"
                                        value="{{ $product->nama }}"
                                        form="update-{{ $product->id }}"
-                                       class="bg-black/20 border border-white/10 rounded-xl px-3 py-2 w-full text-white">
+                                       class="bg-black/20 border border-white/10 rounded-xl px-3 py-2 w-full text-white focus:border-[#D19052]">
 
                             </td>
 
@@ -350,7 +344,7 @@
                                        name="harga"
                                        value="{{ $product->harga }}"
                                        form="update-{{ $product->id }}"
-                                       class="bg-black/20 border border-white/10 rounded-xl px-3 py-2 w-full text-white">
+                                       class="bg-black/20 border border-white/10 rounded-xl px-3 py-2 w-full text-white focus:border-[#D19052]">
 
                             </td>
 
@@ -360,7 +354,7 @@
                                        name="stok"
                                        value="{{ $product->stok }}"
                                        form="update-{{ $product->id }}"
-                                       class="bg-black/20 border border-white/10 rounded-xl px-3 py-2 w-full text-white">
+                                       class="bg-black/20 border border-white/10 rounded-xl px-3 py-2 w-full text-white focus:border-[#D19052]">
 
                             </td>
 
@@ -370,7 +364,7 @@
                                        name="deskripsi"
                                        value="{{ $product->deskripsi }}"
                                        form="update-{{ $product->id }}"
-                                       class="bg-black/20 border border-white/10 rounded-xl px-3 py-2 w-full text-white">
+                                       class="bg-black/20 border border-white/10 rounded-xl px-3 py-2 w-full text-white focus:border-[#D19052]">
 
                             </td>
 
@@ -404,7 +398,7 @@
            class="flex items-center justify-center gap-2 bg-black/20 hover:bg-black/30 border border-white/10 rounded-xl px-4 py-3 cursor-pointer transition text-sm text-gray-300">
 
         <i data-lucide="upload"
-           class="w-4 h-4 text-[#FF6B35]"></i>
+           class="w-4 h-4 text-[#D19052]"></i>
 
         <span>Upload</span>
 
@@ -427,7 +421,7 @@
                                         @method('PUT')
 
                                         <button type="submit"
-                                                class="bg-yellow-500 hover:bg-yellow-600 px-4 py-3 rounded-xl text-white transition">
+                                                class="bg-[#D19052] hover:bg-[#C17E3E] px-4 py-3 rounded-xl text-white transition">
 
                                             Update
 

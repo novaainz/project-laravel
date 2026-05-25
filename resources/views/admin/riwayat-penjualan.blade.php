@@ -9,13 +9,15 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body class="min-h-screen bg-[#1A0508] text-white font-sans">
+<body class="min-h-screen bg-[#3A1F12] text-white font-sans">
 
-<div class="flex min-h-screen bg-gradient-to-br from-[#1A0508] via-[#2b0b18] to-[#FF6B35]">
+<div class="flex min-h-screen bg-[#3A1F12]">
 
     <aside class="w-72 min-h-screen bg-white/10 backdrop-blur-xl border-r border-white/10 p-6 shadow-2xl">
         <div class="mb-10">
-            <h2 class="text-3xl font-extrabold text-[#FF6B35]">Toko Roti</h2>
+            <h2 class="text-4xl font-extrabold text-white tracking-tight">
+    The Breadhouse
+</h2>
             <p class="text-sm text-gray-300 mt-2">Admin Panel</p>
         </div>
 
@@ -30,10 +32,17 @@
                 <span>Kelola Produk</span>
             </a>
 
-            <a href="/admin/riwayat-penjualan" class="flex items-center gap-3 px-5 py-4 rounded-2xl bg-gradient-to-r from-[#FF6B35] to-purple-700 shadow-lg">
-                <i data-lucide="receipt-text" class="w-5 h-5"></i>
-                <span>Riwayat Penjualan</span>
-            </a>
+<a href="/admin/riwayat-penjualan" class="flex items-center justify-between px-5 py-4 rounded-2xl bg-[#C8874A] hover:bg-[#B5763D] transition shadow-lg">
+
+    <div class="flex items-center gap-3">
+
+        <i data-lucide="receipt-text" class="w-5 h-5"></i>
+
+        <span>Riwayat Penjualan</span>
+
+    </div>
+
+</a>
 
             <a href="/login" class="flex items-center gap-3 px-5 py-4 rounded-2xl text-gray-300 hover:bg-red-500/20 transition">
                 <i data-lucide="log-out" class="w-5 h-5"></i>
@@ -50,7 +59,7 @@
                 <p class="text-gray-300 mt-2">Catat pesanan dari WhatsApp ke riwayat penjualan toko roti.</p>
             </div>
 
-            <a href="/admin/dashboard" class="bg-white/10 hover:bg-white/20 border border-white/10 px-5 py-3 rounded-2xl transition">
+            <a href="/admin/dashboard" class="bg-[#7B5235] hover:bg-[#69442C] border border-[#8F6545] px-5 py-3 rounded-2xl transition text-white">
                 Kembali
             </a>
         </div>
@@ -106,7 +115,7 @@
         <div class="bg-white/10 border border-white/10 rounded-3xl p-8 mb-8 shadow-2xl backdrop-blur-xl">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-2xl font-bold">Tambah Penjualan</h2>
-                <div class="w-12 h-12 rounded-2xl bg-gradient-to-r from-[#FF6B35] to-purple-700 flex items-center justify-center">
+                <div class="w-12 h-12 rounded-2xl bg-[#C8874A] flex items-center justify-center">
                     <i data-lucide="plus"></i>
                 </div>
             </div>
@@ -116,20 +125,20 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <input type="text" name="nama_pembeli" placeholder="Nama Pembeli" required
-                           class="bg-black/20 border border-white/10 rounded-2xl px-4 py-4 text-white placeholder-gray-400 outline-none focus:border-[#FF6B35]">
+                           class="bg-black/20 border border-white/10 rounded-2xl px-4 py-4 text-white placeholder-gray-400 outline-none focus:border-[#C8874A]">
 
                     <input type="text" name="nama_produk" placeholder="Nama Produk" required
-                           class="bg-black/20 border border-white/10 rounded-2xl px-4 py-4 text-white placeholder-gray-400 outline-none focus:border-[#FF6B35]">
+                           class="bg-black/20 border border-white/10 rounded-2xl px-4 py-4 text-white placeholder-gray-400 outline-none focus:border-[#C8874A]">
 
                     <input type="number" name="jumlah" placeholder="Jumlah" required
-                           class="bg-black/20 border border-white/10 rounded-2xl px-4 py-4 text-white placeholder-gray-400 outline-none focus:border-[#FF6B35]">
+                           class="bg-black/20 border border-white/10 rounded-2xl px-4 py-4 text-white placeholder-gray-400 outline-none focus:border-[#C8874A]">
 
                     <input type="number" name="total_harga" placeholder="Total Harga" required
-                           class="bg-black/20 border border-white/10 rounded-2xl px-4 py-4 text-white placeholder-gray-400 outline-none focus:border-[#FF6B35]">
+                           class="bg-black/20 border border-white/10 rounded-2xl px-4 py-4 text-white placeholder-gray-400 outline-none focus:border-[#C8874A]">
                 </div>
 
                 <button type="submit"
-                        class="mt-6 bg-gradient-to-r from-[#FF6B35] to-purple-700 hover:scale-105 transition px-6 py-4 rounded-2xl font-semibold shadow-xl">
+                        class="mt-6 bg-[#C8874A] hover:bg-[#B5763D] transition px-6 py-4 rounded-2xl font-semibold shadow-xl text-white">
                     + Tambah Penjualan
                 </button>
             </form>
@@ -179,7 +188,7 @@
         @method('DELETE')
 
         <button type="submit"
-                class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-xl text-sm transition">
+                class="bg-[#9B4F35] hover:bg-[#85422C] px-4 py-2 rounded-xl text-sm transition text-white">
 
             Hapus
 

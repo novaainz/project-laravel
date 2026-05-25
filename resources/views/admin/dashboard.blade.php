@@ -14,18 +14,18 @@
 
 </head>
 
-<body class="min-h-screen bg-[#1A0508] text-white font-sans">
+<body class="min-h-screen bg-[#3A1F12] text-white font-sans">
 
-<div class="flex min-h-screen bg-gradient-to-br from-[#1A0508] via-[#2b0b18] to-[#FF6B35]">
+<div class="flex min-h-screen bg-[#3A1F12]">
 
     <!-- SIDEBAR -->
     <aside class="w-72 min-h-screen bg-white/10 backdrop-blur-xl border-r border-white/10 p-6 shadow-2xl relative">
 
         <div class="mb-10">
 
-            <h2 class="text-3xl font-extrabold text-[#FF6B35]">
-                 Toko Roti
-            </h2>
+<h2 class="text-4xl font-extrabold text-white tracking-tight">
+    The Breadhouse
+</h2>
 
             <p class="text-sm text-gray-300 mt-2">
                 Admin Panel
@@ -37,7 +37,7 @@
 
             <!-- DASHBOARD -->
             <a href="/admin/dashboard"
-               class="flex items-center gap-3 px-5 py-4 rounded-2xl bg-gradient-to-r from-[#FF6B35] to-purple-700 shadow-lg">
+               class="flex items-center gap-3 px-5 py-4 rounded-2xl bg-[#C8874A] hover:bg-[#B5763D] transition shadow-lg">
 
                 <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
 
@@ -67,9 +67,7 @@
 
                 </div>
 
-                <span class="text-xs bg-[#FF6B35] px-2 py-1 rounded-full">
-                    Baru
-                </span>
+
 
             </a>
 
@@ -85,18 +83,7 @@
 
         </nav>
 
-        <!-- BOX -->
-        <div class="absolute bottom-6 left-6 right-6 bg-gradient-to-r from-[#FF6B35]/80 to-purple-700/80 rounded-3xl p-5 shadow-xl">
-
-            <p class="font-bold">
-                Roti lezat, hari hebat!
-            </p>
-
-            <p class="text-sm text-gray-200 mt-1">
-                Kelola toko roti dengan mudah.
-            </p>
-
-        </div>
+      
 
     </aside>
 
@@ -124,7 +111,7 @@
                     Admin
                 </span>
 
-                <div class="w-10 h-10 rounded-full bg-[#FF6B35] flex items-center justify-center font-bold">
+                <div class="w-10 h-10 rounded-full bg-[#C8874A] flex items-center justify-center font-bold text-white">
                     A
                 </div>
 
@@ -153,18 +140,18 @@
                 <div class="flex flex-wrap gap-4 mt-6">
 
                     <a href="/products"
-                       class="bg-gradient-to-r from-[#FF6B35] to-purple-700 hover:scale-105 transition px-6 py-3 rounded-2xl shadow-lg font-semibold">
+                       class="bg-[#C8874A] hover:bg-[#B5763D] transition px-6 py-3 rounded-2xl shadow-lg font-semibold text-white">
 
                         Kelola Produk
 
                     </a>
 
-                    <a href="/admin/riwayat-penjualan"
-                       class="bg-white/10 hover:bg-white/20 border border-white/10 px-6 py-3 rounded-2xl transition font-semibold">
+                   <a href="/admin/riwayat-penjualan"
+   class="bg-[#C8874A] hover:bg-[#B5763D] px-6 py-3 rounded-2xl transition shadow-lg font-semibold text-white">
 
-                        Lihat Riwayat Penjualan
+    Lihat Riwayat Penjualan
 
-                    </a>
+</a>
 
                 </div>
 
@@ -182,7 +169,7 @@
             <!-- PRODUK -->
             <div class="bg-white/10 border border-white/10 rounded-3xl p-6 shadow-xl hover:scale-105 transition">
 
-                <div class="w-14 h-14 rounded-2xl bg-purple-600 flex items-center justify-center text-2xl mb-5">
+                <div class="w-14 h-14 rounded-2xl bg-[#C8874A] flex items-center justify-center text-2xl mb-5">
 
                     <i data-lucide="package"></i>
 
@@ -239,7 +226,7 @@
                 </p>
 
                 <h3 class="text-3xl font-extrabold mt-2">
-                    {{ \App\Models\Product::count() }}
+                {{ \App\Models\Sale::count() }}
                 </h3>
 
                 <p class="text-sm text-gray-400 mt-2">
@@ -285,7 +272,7 @@
                         Grafik Penjualan
                     </h3>
 
-                    <button class="bg-black/30 text-sm px-4 py-2 rounded-xl border border-white/10">
+                    <<button class="bg-[#7B5235] hover:bg-[#69442C] text-sm px-4 py-2 rounded-xl border border-[#8F6545] text-white transition">
                         7 Hari Terakhir
                     </button>
 
@@ -309,7 +296,7 @@
         </h3>
 
         <a href="/admin/riwayat-penjualan"
-           class="text-[#FF6B35] text-sm hover:underline">
+           class="text-[#C8874A] text-sm hover:underline">
 
             Lihat Semua →
 
