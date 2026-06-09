@@ -397,13 +397,12 @@
           </div>
         </div>
 
-        <div class="col-lg-3 col-md-6">
-          <div class="category-card">
-            <img src="https://images.unsplash.com/photo-1585478259715-1c093d0d6b41?q=80&w=800&auto=format&fit=crop">
-            <div class="overlay">Roti Tawar</div>
-          </div>
-        </div>
-
+<div class="col-lg-3 col-md-6">
+  <div class="category-card">
+    <img src="https://images.pexels.com/photos/1775043/pexels-photo-1775043.jpeg">
+    <div class="overlay">Roti Tawar</div>
+  </div>
+</div>
         <div class="col-lg-3 col-md-6">
           <div class="category-card">
             <img src="https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?q=80&w=800&auto=format&fit=crop">
